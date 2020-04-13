@@ -1,6 +1,6 @@
-# Cloud Patrol - <small>Policy as Code for the Cloud Development Kit</small>
-
 ![cloudpatrol.png](./cloudpatrol.png)
+
+# Policy as Code for the Cloud Development Kit
 
 Cloud Patrol let's you define common policies with remediation strategies for your [AWS CDK](https://github.com/aws/aws-cdk/) stacks and enforce them across your CDK stacks / applications.
 
