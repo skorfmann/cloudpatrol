@@ -15,11 +15,6 @@
     "dist/policies",
     "Readme.md"
   ],
-  "keywords": [
-    "policy as code",
-    "cdk",
-    "linter"
-  ],
   "author": "Sebastian Korfmann <sebastian@korfmann.net>",
   "license": "Apache-2.0",
   "engines": {
