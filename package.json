@@ -1,0 +1,47 @@
+{
+  "name": "cloudpatrol",
+  "version": "0.0.1",
+  "description": "Policy as Code for the CDK",
+  "main": "dist/lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk",
+    "lint": "eslint"
+  },
+  "files": [
+    "dist/lib",
+    "dist/policies",
+    "Readme.md"
+  ],
+  "keywords": [
+    "policy as code",
+    "cdk",
+    "linter"
+  ],
+  "author": "Sebastian Korfmann <sebastian@korfmann.net>",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">= 0.10"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@aws-cdk/aws-ec2": "1.32.2",
+    "@aws-cdk/aws-s3": "1.32.2",
+    "@aws-cdk/core": "1.32.2",
+    "@types/node": "^13.11.0",
+    "@typescript-eslint/eslint-plugin": "^2.27.0",
+    "@typescript-eslint/parser": "^2.27.0",
+    "constructs": "^2.0.1",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.2",
+    "typescript": "^3.8.3"
+  },
+  "peerDependencies": {
+    "@aws-cdk/aws-ec2": "^1.0.0",
+    "@aws-cdk/aws-s3": "^1.0.0",
+    "@aws-cdk/core": "^1.0.0",
+    "constructs": "^2.0.1"
+  }
+}
