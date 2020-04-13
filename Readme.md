@@ -56,7 +56,7 @@ As part of your normal CDK commands (e.g. `cdk synth --app bin/example.js`), wil
 
 ### Terminal Report
 
-For CI / CD workflows and local testing, just execute your CDK app directly with `node` (e.g. `node ./bin/example.js`). This is great for dedicated validation of policies without the synthesized output
+For CI / CD workflows and local testing, just execute your CDK app directly with `node` (e.g. `node ./bin/example.js`). This is great for dedicated validation of policies without the synthesized output.
 
 ### Custom Reporting
 
@@ -123,7 +123,7 @@ class YourCustomPolicy extends Policy implements PolicyInterface {
 ```typescript
 class YourCustomPolicy extends Policy implements PolicyInterface {
   //...
-  public isApplicable(node: s3.CfnBucket): boolean {
+  public isApplicable(node: cdk.Resource): boolean {
     // your custom logic here
   }
   //...
