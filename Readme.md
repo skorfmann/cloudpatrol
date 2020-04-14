@@ -161,6 +161,7 @@ Cloud Patrol makes use of [Aspects](https://docs.aws.amazon.com/cdk/latest/guide
 
 - [ ] Simplify Policy definition
 - [ ] Drop dependency to aws-cdk/core where possible, extract the rest to dedicated package
+- [ ] Publish policies as separate package (e.g. @cloudpatrol/aws-policies)
 - [ ] Implement remediation strategies
 - [ ] Documentation
 - [ ] Policy generator
