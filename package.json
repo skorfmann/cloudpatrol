@@ -1,6 +1,6 @@
 {
   "name": "cloudpatrol",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Policy as Code for the CDK",
   "main": "lib/index.js",
   "scripts": {
