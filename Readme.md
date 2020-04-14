@@ -146,7 +146,7 @@ Found issues can be reported via the `reporter` object. You can report multiple 
 - Warning
 - Error 
 
-`context` is persistent across the entire Stack validation. Could be used to perform accumulative checks or similar things.
+`context` is persistent across the entire Stack validation and can be passed in for dynamic information.
 
 ## How does it work?
 

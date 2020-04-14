@@ -2,9 +2,9 @@
 import 'source-map-support/register';
 import * as cdk from '@aws-cdk/core';
 import { ExampleStack } from '../lib/example-stack';
-import { AwsCdkPatrol } from 'cloudpatrol/dist/lib'
-import { awsDefaults } from 'cloudpatrol/dist/policies/aws/packs/good-defaults'
-import { Ec2InstanceTypePolicy } from 'cloudpatrol/dist/policies/aws';
+import { AwsCdkPatrol } from 'cloudpatrol'
+import { awsDefaults } from 'cloudpatrol/policies/aws/packs/good-defaults'
+import { Ec2InstanceTypePolicy } from 'cloudpatrol/policies/aws';
 import * as ec2 from '@aws-cdk/aws-ec2'
 
 const app = new cdk.App();
