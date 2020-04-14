@@ -1,6 +1,6 @@
 {
   "name": "cloudpatrol",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Policy as Code for the CDK",
   "main": "lib/index.js",
   "scripts": {
@@ -11,8 +11,8 @@
     "lint": "eslint"
   },
   "files": [
-    "./{lib,policies}/**/*.js",
-    "./lib,policies}/**/*.d.ts",
+    "{lib,policies}/**/*.js",
+    "{lib,policies}/**/*.d.ts",
     "Readme.md"
   ],
   "author": "Sebastian Korfmann <sebastian@korfmann.net>",
