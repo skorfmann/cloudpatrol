@@ -1,5 +1,5 @@
 import * as cdk from "@aws-cdk/core"
-import { IPolicy } from "./policy";
+import { Policy } from "./policy";
 import { Severity } from "./severity";
 import { IConstruct } from "constructs";
 
@@ -39,7 +39,7 @@ class ViolationList {
   public print(): void {
     Object.values(this.violationItems).forEach((violationItem) => {
       console.log("\x1b[1m%s\x1b[0m", `${violationItem.scope} (${violationItem.resourceType}):`)
-      console.group()      
+      console.group()
       console.log('\n-------------- Violations ------------------')
       violationItem.violations.forEach((violation) => {
         console.log(violation.message())
@@ -51,18 +51,17 @@ class ViolationList {
     })
   }
 }
-
-export interface Reportable {
+export interface IReportable {
   generateReport(): void;
   hasViolations(): boolean;
-  addInfo(node: IConstruct, policy: IPolicy, message: string): void;
-  addWarning(node: IConstruct, policy: IPolicy, message: string): void;
-  addError(node: IConstruct, policy: IPolicy, message: string): void;
+  addInfo(node: IConstruct, policy: Policy, message: string): void;
+  addWarning(node: IConstruct, policy: Policy, message: string): void;
+  addError(node: IConstruct, policy: Policy, message: string): void;
 }
 
 interface PolicyViolationProps {
   node: any;
-  policy: IPolicy;
+  policy: Policy;
   message: string;
   severity: Severity;
 }
@@ -71,7 +70,7 @@ class PolicyViolation {
   public scope: string;
   public resourceType: string;
   private node: cdk.CfnResource;
-  private policy: IPolicy;
+  private policy: Policy;
 
   constructor(private props: PolicyViolationProps) {
     this.node = this.props.node as cdk.CfnResource;
@@ -112,7 +111,7 @@ class PolicyViolation {
   }
 }
 
-export class TerminalReporter implements Reportable {
+export class TerminalReporter implements IReportable {
   private violations: ViolationList
   constructor() {
     this.violations = new ViolationList()
@@ -120,7 +119,7 @@ export class TerminalReporter implements Reportable {
 
   public generateReport(): void {
     console.log("\x1b[4m\x1b[35;1mCloud Patrol Report\x1b[0m\n");
-    this.violations.print()  
+    this.violations.print()
   }
 
   public hasViolations(): boolean {
@@ -129,16 +128,16 @@ export class TerminalReporter implements Reportable {
     }
     return false;
   }
-  public addInfo(node: IConstruct, policy: IPolicy, message: string): void {
+  public addInfo(node: IConstruct, policy: Policy, message: string): void {
     this.reportViolation(node, policy, message, Severity.INFO);
   }
-  public addWarning(node: IConstruct, policy: IPolicy, message: string): void {
+  public addWarning(node: IConstruct, policy: Policy, message: string): void {
     this.reportViolation(node, policy, message, Severity.WARNING);
   }
-  public addError(node: IConstruct, policy: IPolicy, message: string): void {
+  public addError(node: IConstruct, policy: Policy, message: string): void {
     this.reportViolation(node, policy, message, Severity.ERROR);
   }
-  private reportViolation(node: IConstruct, policy: IPolicy, message: string, severity: Severity): void {
+  private reportViolation(node: IConstruct, policy: Policy, message: string, severity: Severity): void {
     this.violations.add(
       new PolicyViolation({
         node,

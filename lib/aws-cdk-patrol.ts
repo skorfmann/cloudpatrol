@@ -1,13 +1,13 @@
 import * as cdk from "@aws-cdk/core";
 import { IConstruct, IAspect } from "constructs";
-import { Reportable, TerminalReporter } from "./reporter";
+import { IReportable, TerminalReporter } from "./reporter";
 import { AwsCdkReporter } from "./aws-cdk-reporter"
 import { PolicyPack } from "./policy-pack";
 import { PolicyContext } from "./policy";
 
 export class AwsCdkPatrol implements IAspect {
-  private readonly reporter: Reportable;
-  
+  private readonly reporter: IReportable;
+
   constructor(private readonly policies: PolicyPack, private context: PolicyContext = {}) {
     this.reporter = this.isSynthesizing() ? new AwsCdkReporter() : new TerminalReporter()
   }
