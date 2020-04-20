@@ -1,8 +1,9 @@
 import { Resource } from "@aws-cdk/core"
-import { Reportable } from "./reporter";
-import { IPolicy } from "./policy"
+import { IReportable } from "./reporter";
+import { Policy } from "./policy"
+import { IConstruct } from "constructs";
 
-export class AwsCdkReporter implements Reportable {
+export class AwsCdkReporter implements IReportable {
   private violations: Resource[] = []
 
   public generateReport(): void {
@@ -13,18 +14,21 @@ export class AwsCdkReporter implements Reportable {
     return this.violations.length > 0
   }
 
-  public addInfo(node: Resource, policy: IPolicy, message: string): void {
-    this.violations.push(node)
-    node.node.addInfo(message)
+  public addInfo(node: IConstruct, _policy: Policy, message: string): void {
+    const resource = node as Resource;
+    this.violations.push(resource)
+    resource.node.addInfo(message)
   }
 
-  public addWarning(node: Resource, policy: IPolicy, message: string): void {
-    this.violations.push(node)
-    node.node.addWarning(message)
+  public addWarning(node: IConstruct, _policy: Policy, message: string): void {
+    const resource = node as Resource;
+    this.violations.push(resource)
+    resource.node.addWarning(message)
   }
 
-  public addError(node: Resource, policy: IPolicy, message: string): void {
-    this.violations.push(node)
-    node.node.addError(message)
+  public addError(node: IConstruct, _policy: Policy, message: string): void {
+    const resource = node as Resource;
+    this.violations.push(resource)
+    resource.node.addError(message)
   }
 }

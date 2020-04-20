@@ -23,7 +23,7 @@ Make sure your Cloud resources are:
 yarn add cloudpatrol
 ```
 
-### Example 
+### Example
 
 Given this example:
 
@@ -73,14 +73,14 @@ Hasn't been implemented, yet. But it's on the agenda, and probably possible righ
  * @cloudformationResource AWS::S3::Bucket
  * @see https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-versioningconfig.html
  */
-export class BucketVersioningPolicy extends Policy implements PolicyInterface {  
+export class BucketVersioningPolicy extends Policy {
   public policyName = 'Bucket Versioning'
   public description = 'This ensures that a bucket is properly versioned'
   public link = 'https//docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-versioningconfig.html'
   public scope = s3.CfnBucket
-  
-  public validator(node: s3.CfnBucket, reporter: Reportable): void { 
-    if (!node.versioningConfiguration || 
+
+  public validator(node: s3.CfnBucket, reporter: IReportable): void {
+    if (!node.versioningConfiguration ||
       (!cdk.Tokenization.isResolvable(node.versioningConfiguration) && node.versioningConfiguration.status !== 'Enabled')) {
       reporter.addWarning(node, this, 'Bucket versioning is not enabled');
     }
@@ -100,7 +100,7 @@ export class BucketVersioningPolicy extends Policy implements PolicyInterface {
 Policies have to follow this schema
 
 ```typescript
-class YourCustomPolicy extends Policy implements PolicyInterface {
+class YourCustomPolicy extends Policy {
   //...
 }
 ```
@@ -111,7 +111,7 @@ There are two options to define the scope of a Policy:
 *Define an explicit scope:*
 
 ```typescript
-class YourCustomPolicy extends Policy implements PolicyInterface {
+class YourCustomPolicy extends Policy {
   //...
   public scope = s3.CfnBucket
   //...
@@ -121,7 +121,7 @@ class YourCustomPolicy extends Policy implements PolicyInterface {
 *Overwrite `isApplicable`:*
 
 ```typescript
-class YourCustomPolicy extends Policy implements PolicyInterface {
+class YourCustomPolicy extends Policy {
   //...
   public isApplicable(node: cdk.Resource): boolean {
     // your custom logic here
@@ -132,9 +132,9 @@ class YourCustomPolicy extends Policy implements PolicyInterface {
 #### Policy Validation Logic
 
 ```typescript
-class YourCustomPolicy extends Policy implements PolicyInterface {
+class YourCustomPolicy extends Policy {
   //...
-  public validator(node: s3.CfnBucket, reporter: Reportable, context: PolicyContext): void { 
+  public validator(node: s3.CfnBucket, reporter: IReportable, context: PolicyContext): void {
     // your custom logic here.
   }
   //...
@@ -144,7 +144,7 @@ Found issues can be reported via the `reporter` object. You can report multiple 
 
 - Info
 - Warning
-- Error 
+- Error
 
 `context` is persistent across the entire Stack validation and can be passed in for dynamic information.
 
