@@ -168,7 +168,7 @@ Cloud Patrol makes use of [Aspects](https://docs.aws.amazon.com/cdk/latest/guide
 - [ ] Modularize and detangle `Reporter` to allow multiple ways of reporting
 - [ ] [Github Actions](https://github.com/features/actions) for easy integration
 - [ ] `.cloudpatrol` file?
-- [ ] Provide more policies out of the box 
+- [ ] Provide more policies out of the box
 - [ ] CLI which autodetects Stacks for inspection
 - [ ] Integration tests against the last X releases of the [AWS CDK](https://github.com/aws/aws-cdk/)
 - [ ] Integrate supported languages of [jsii](https://github.com/aws/jsii)
